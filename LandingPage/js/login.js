@@ -24,44 +24,46 @@ function validateFormAndLogUserIn(event) {
     event.preventDefault();
 
     try {
-        checkIfInputsAreValid();
+        validateInputs();
         logUserIn();
         redirectToIndexPage();
-    } catch (message) {
-        showAlertMessage(message);
+    } catch (error) {
+        showAlertMessage(error.message);
     }
 }
 
-function checkIfInputsAreValid() {
-    checkIfUsernameIsNotEmpty();
-    checkIfPasswordHasValidLength();
-    checkIfEmailIsValid();
+function validateInputs() {
+    validateUsername();
+    validatePassword();
+    validateEmail();
 }
 
-function checkIfUsernameIsNotEmpty() {
+function validateUsername() {
     const username = document.querySelector("#username").value;
 
     if (!username) {
-        throw "O nome de usuário não pode ser vazio!";
+        throw Error("O nome de usuário não pode ser vazio!");
     }
 }
 
-function checkIfPasswordHasValidLength() {
+function validatePassword() {
     const passwordLength = document.querySelector("#password").value.length;
     const minLength = 8;
     const maxLength = 16;
 
     if (passwordLength < minLength || passwordLength > maxLength) {
-        throw `A senha deve ter entre ${minLength} e ${maxLength} caracteres`;
+        throw Error(
+            `A senha deve ter entre ${minLength} e ${maxLength} caracteres`
+        );
     }
 }
 
-function checkIfEmailIsValid() {
+function validateEmail() {
     const emailInput = document.querySelector("#email");
     const emailPattern = /[^ ]@[^ ]+\.[a-z]{2,3}$/i;
 
     if (emailInput.required && !emailPattern.test(emailInput.value)) {
-        throw "Email inválido!";
+        throw Error("Email inválido!");
     }
 }
 

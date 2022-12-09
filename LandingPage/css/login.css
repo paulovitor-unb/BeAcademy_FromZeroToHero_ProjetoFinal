@@ -37,24 +37,24 @@ body {
 }
 
 main,
-#header-brand {
+#brand {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1.6rem;
 }
 
-#header-brand * {
+#brand * {
     text-align: center;
     line-height: 1;
     font-size: 3rem;
 }
 
-#header-brand > img {
+#brand img {
     height: 7rem;
 }
 
-#header-brand > h1 > * {
+#brand span {
     color: var(--color-primary);
 }
 
