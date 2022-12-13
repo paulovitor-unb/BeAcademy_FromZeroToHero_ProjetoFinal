@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <title>Index</title>
-        <link rel="shortcut icon" href="./assets/icons/png/shopping-cart.png" />
+        <link rel="shortcut icon" href="./assets/icons/ico/favicon.ico" />
 
         <link rel="stylesheet" href="./css/index.css" />
 
@@ -17,36 +17,52 @@
         <header>
             <div class="container">
                 <div id="brand">
-                    <figure>
+                    <figure id="brand-icon">
                         <img
-                            src="./assets/icons/png/shopping-cart.png"
+                            src="./assets/icons/ico/favicon.ico"
                             alt="Ícone de carrinho"
                         />
                     </figure>
-                    <h2>mer<span>Carrin</span></h2>
-                    <button id="nav-menu-button">
+                    <h2 id="brand-name">mer<span>Carrin</span></h2>
+                    <button id="nav-button">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
                 </div>
 
-                <nav id="nav-menu">
-                    <ul>
-                        <li><a href="#home" class="section-link">Início</a></li>
+                <nav>
+                    <ul id="nav-bar">
                         <li>
-                            <a href="#resources" class="section-link">
+                            <a href="#home-section" class="section-link">
+                                Início
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#resources-section" class="section-link">
                                 Recursos
                             </a>
                         </li>
                         <li>
-                            <a href="#contact" class="section-link">Contato</a>
+                            <a href="#contact-section" class="section-link">
+                                Contato
+                            </a>
                         </li>
                         <li>
-                            <a href="./login.html">Entrar</a>
+                            <a
+                                href="./login.html"
+                                class="login-link button outline"
+                            >
+                                Entrar
+                            </a>
                         </li>
                         <li>
-                            <a href="./login.html">Cadastrar-se</a>
+                            <a
+                                href="./login.html"
+                                class="login-link button fill"
+                            >
+                                Cadastrar-se
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -54,11 +70,11 @@
         </header>
 
         <main>
-            <section id="home">
+            <section id="home-section">
                 <div class="container">
-                    <article>
-                        <div id="main-title">
-                            <h1>
+                    <article id="title-article">
+                        <div class="article-textbox">
+                            <h1 class="article-title">
                                 mer<span>Carrin</span>, o facilitador das suas
                                 compras
                             </h1>
@@ -68,7 +84,7 @@
                                 <span>rápida</span> e <span>prática</span>!
                             </p>
                         </div>
-                        <figure id="main-logo">
+                        <figure class="article-image" id="main-logo">
                             <img
                                 src="./assets/icons/png/shopping-cart.png"
                                 alt="Ícone de carrinho"
@@ -76,15 +92,17 @@
                         </figure>
                     </article>
 
-                    <article>
-                        <figure>
+                    <article class="simple-article">
+                        <figure class="article-image">
                             <img
                                 src="./assets/imgs/innovation.png"
                                 alt="Inovação"
                             />
                         </figure>
-                        <div>
-                            <h2><span>Inove</span> sua forma de comprar</h2>
+                        <div class="article-textbox">
+                            <h2 class="article-title">
+                                <span>Inove</span> sua forma de comprar
+                            </h2>
                             <p>
                                 Monte sua <span>lista</span>, compare
                                 <span>preços de mercados</span>, acompanhe a
@@ -97,11 +115,11 @@
                 </div>
             </section>
 
-            <section id="resources">
+            <section id="resources-section">
                 <div class="container">
-                    <article>
-                        <div>
-                            <h2>
+                    <article id="table-article">
+                        <div class="article-textbox">
+                            <h2 class="article-title">
                                 Chega de fazer <span>listas de compras</span> no
                                 papel
                             </h2>
@@ -111,129 +129,129 @@
                                 <span>automatizadas</span> das suas compras.
                             </p>
                         </div>
-                        <div id="table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Total: R$ 500,00</th>
-                                        <th colspan="2">Estoque</th>
-                                        <th colspan="3">Compras</th>
-                                        <th class="col-lg" colspan="3">
-                                            Meses anteriores
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>Produto</th>
-                                        <th>Meta</th>
-                                        <th>Atual</th>
-                                        <th>Comprar</th>
-                                        <th>Unidade</th>
-                                        <th>Total</th>
-                                        <th class="col-lg">1 mês</th>
-                                        <th class="col-lg">2 meses</th>
-                                        <th class="col-lg">3 meses</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Sabonete</td>
-                                        <td>20</td>
-                                        <td>13</td>
-                                        <td>7</td>
-                                        <td>R$ 1,39</td>
-                                        <td>R$ 9,73</td>
-                                        <td class="col-lg">R$ 1,59</td>
-                                        <td class="col-lg">R$ 1,59</td>
-                                        <td class="col-lg">R$ 1,29</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Papel higiênico</td>
-                                        <td>2</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>R$ 8,99</td>
-                                        <td>R$ 8,99</td>
-                                        <td class="col-lg">R$ 12,49</td>
-                                        <td class="col-lg">R$ 12,49</td>
-                                        <td class="col-lg">R$ 13,99</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Detergente</td>
-                                        <td>6</td>
-                                        <td>2</td>
-                                        <td>4</td>
-                                        <td>R$ 1,99</td>
-                                        <td>R$ 7,96</td>
-                                        <td class="col-lg">R$ 2,19</td>
-                                        <td class="col-lg">R$ 1,99</td>
-                                        <td class="col-lg">R$ 2,97</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sabão em pó</td>
-                                        <td>2</td>
-                                        <td>0</td>
-                                        <td>2</td>
-                                        <td>R$ 23,90</td>
-                                        <td>R$ 47,80</td>
-                                        <td class="col-lg">R$ 25,90</td>
-                                        <td class="col-lg">R$ 25,90</td>
-                                        <td class="col-lg">R$ 21,90</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Arroz</td>
-                                        <td>3</td>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>R$ 9,99</td>
-                                        <td>R$ 19,98</td>
-                                        <td class="col-lg">R$ 9,99</td>
-                                        <td class="col-lg">R$ 9,99</td>
-                                        <td class="col-lg">R$ 9,49</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Feijão</td>
-                                        <td>2</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>R$ 5,99</td>
-                                        <td>R$ 5,99</td>
-                                        <td class="col-lg">R$ 6,99</td>
-                                        <td class="col-lg">R$ 6,99</td>
-                                        <td class="col-lg">R$ 6,99</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Macarrão</td>
-                                        <td>3</td>
-                                        <td>0</td>
-                                        <td>3</td>
-                                        <td>R$ 3,45</td>
-                                        <td>R$ 10,36</td>
-                                        <td class="col-lg">R$ 3,19</td>
-                                        <td class="col-lg">R$ 3,19</td>
-                                        <td class="col-lg">R$ 3,29</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&vellip;</td>
-                                        <td>&vellip;</td>
-                                        <td>&vellip;</td>
-                                        <td>&vellip;</td>
-                                        <td>&vellip;</td>
-                                        <td>&vellip;</td>
-                                        <td class="col-lg">&vellip;</td>
-                                        <td class="col-lg">&vellip;</td>
-                                        <td class="col-lg">&vellip;</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table id="shopping-table">
+                            <thead>
+                                <tr>
+                                    <th>Total: R$ 500,00</th>
+                                    <th colspan="2">Estoque</th>
+                                    <th colspan="3">Compras</th>
+                                    <th class="show-lg" colspan="3">
+                                        Meses anteriores
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Meta</th>
+                                    <th>Atual</th>
+                                    <th>Comprar</th>
+                                    <th>Unidade</th>
+                                    <th>Total</th>
+                                    <th class="show-lg">1 mês</th>
+                                    <th class="show-lg">2 meses</th>
+                                    <th class="show-lg">3 meses</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sabonete</td>
+                                    <td>20</td>
+                                    <td>13</td>
+                                    <td>7</td>
+                                    <td>R$ 1,39</td>
+                                    <td>R$ 9,73</td>
+                                    <td class="show-lg">R$ 1,59</td>
+                                    <td class="show-lg">R$ 1,59</td>
+                                    <td class="show-lg">R$ 1,29</td>
+                                </tr>
+                                <tr>
+                                    <td>Papel higiênico</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>R$ 8,99</td>
+                                    <td>R$ 8,99</td>
+                                    <td class="show-lg">R$ 12,49</td>
+                                    <td class="show-lg">R$ 12,49</td>
+                                    <td class="show-lg">R$ 13,99</td>
+                                </tr>
+                                <tr>
+                                    <td>Detergente</td>
+                                    <td>6</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                    <td>R$ 1,99</td>
+                                    <td>R$ 7,96</td>
+                                    <td class="show-lg">R$ 2,19</td>
+                                    <td class="show-lg">R$ 1,99</td>
+                                    <td class="show-lg">R$ 2,97</td>
+                                </tr>
+                                <tr>
+                                    <td>Sabão em pó</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>2</td>
+                                    <td>R$ 23,90</td>
+                                    <td>R$ 47,80</td>
+                                    <td class="show-lg">R$ 25,90</td>
+                                    <td class="show-lg">R$ 25,90</td>
+                                    <td class="show-lg">R$ 21,90</td>
+                                </tr>
+                                <tr>
+                                    <td>Arroz</td>
+                                    <td>3</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>R$ 9,99</td>
+                                    <td>R$ 19,98</td>
+                                    <td class="show-lg">R$ 9,99</td>
+                                    <td class="show-lg">R$ 9,99</td>
+                                    <td class="show-lg">R$ 9,49</td>
+                                </tr>
+                                <tr>
+                                    <td>Feijão</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>R$ 5,99</td>
+                                    <td>R$ 5,99</td>
+                                    <td class="show-lg">R$ 6,99</td>
+                                    <td class="show-lg">R$ 6,99</td>
+                                    <td class="show-lg">R$ 6,99</td>
+                                </tr>
+                                <tr>
+                                    <td>Macarrão</td>
+                                    <td>3</td>
+                                    <td>0</td>
+                                    <td>3</td>
+                                    <td>R$ 3,45</td>
+                                    <td>R$ 10,36</td>
+                                    <td class="show-lg">R$ 3,19</td>
+                                    <td class="show-lg">R$ 3,19</td>
+                                    <td class="show-lg">R$ 3,29</td>
+                                </tr>
+                                <tr>
+                                    <td>&vellip;</td>
+                                    <td>&vellip;</td>
+                                    <td>&vellip;</td>
+                                    <td>&vellip;</td>
+                                    <td>&vellip;</td>
+                                    <td>&vellip;</td>
+                                    <td class="show-lg">&vellip;</td>
+                                    <td class="show-lg">&vellip;</td>
+                                    <td class="show-lg">&vellip;</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </article>
 
-                    <article>
-                        <figure>
+                    <article class="simple-article">
+                        <figure class="article-image">
                             <img src="./assets/imgs/graph.png" alt="Gráfico" />
                         </figure>
-                        <div>
-                            <h2>Use os <span>gráficos</span> a seu favor</h2>
+                        <div class="article-textbox">
+                            <h2 class="article-title">
+                                Use os <span>gráficos</span> a seu favor
+                            </h2>
                             <p>
                                 Os diversos tipos de gráficos irão te ajudar a
                                 identificar <span>queda</span> ou
@@ -243,9 +261,9 @@
                         </div>
                     </article>
 
-                    <article>
-                        <div>
-                            <h2>
+                    <article id="maps-article">
+                        <div class="article-textbox">
+                            <h2 class="article-title">
                                 Compare os <span>preços</span> dos mercados
                                 <span>próximos a você</span>
                             </h2>
@@ -255,33 +273,43 @@
                                 prático. Inclusive em viagens.
                             </p>
                         </div>
-                        <div id="search-cep">
-                            <form>
+                        <div id="local-stores">
+                            <form id="cep-form">
                                 <input
                                     type="text"
+                                    class="form-input"
                                     id="cep"
                                     pattern="\d{5}-\d{3}"
                                     maxlength="9"
                                     placeholder="CEP"
                                     required
                                 />
-                                <input type="submit" value="Buscar" />
+                                <input
+                                    type="submit"
+                                    class="button fill"
+                                    id="cep-search-button"
+                                    value="Buscar"
+                                />
                             </form>
+                            <div id="cep-alert"></div>
                             <iframe
                                 src="https://maps.google.com/maps?hl=pt-br&amp;ie=UTF8&amp;output=embed&amp;q=mercado"
+                                id="maps-iframe"
                             ></iframe>
                         </div>
                     </article>
 
-                    <article>
-                        <figure>
+                    <article class="simple-article">
+                        <figure class="article-image">
                             <img
                                 src="./assets/imgs/handy.png"
                                 alt="Na palma da mão"
                             />
                         </figure>
-                        <div>
-                            <h2><span>Tudo</span> na palma da sua mão</h2>
+                        <div class="article-textbox">
+                            <h2 class="article-title">
+                                <span>Tudo</span> na palma da sua mão
+                            </h2>
                             <p>
                                 Cadastre-se e <span>otimize seu tempo</span> na
                                 hora de fazer suas compras.
@@ -291,17 +319,19 @@
                 </div>
             </section>
 
-            <section id="contact">
+            <section id="contact-section">
                 <div class="container">
-                    <article>
-                        <div>
-                            <h2>Entre em <span>contato</span> conosco!</h2>
+                    <article id="contact-article">
+                        <div class="article-textbox">
+                            <h2 class="article-title">
+                                Entre em <span>contato</span> conosco!
+                            </h2>
                             <p>
                                 Se você tiver alguma dúvida ou apenas deseja se
                                 conectar, adoraríamos ouvir de você. Aproveite
                                 para nos seguir nas redes sociais.
                             </p>
-                            <ul>
+                            <ul id="contact-links">
                                 <li>
                                     <a href="tel:+5561999999999">
                                         <img
@@ -352,6 +382,7 @@
                         <form id="contact-form">
                             <input
                                 type="text"
+                                class="form-input"
                                 id="name"
                                 name="name"
                                 placeholder="Nome"
@@ -359,6 +390,7 @@
                             />
                             <input
                                 type="email"
+                                class="form-input"
                                 id="email"
                                 name="email"
                                 placeholder="Email"
@@ -366,6 +398,7 @@
                             />
                             <input
                                 type="text"
+                                class="form-input"
                                 id="phone"
                                 name="phone"
                                 pattern="\(\d{2}\) \d{5}-\d{4}"
@@ -374,13 +407,19 @@
                                 required
                             />
                             <textarea
+                                class="form-input"
                                 id="message"
                                 name="message"
                                 rows="5"
                                 placeholder="Mensagem"
                                 required
                             ></textarea>
-                            <input type="submit" value="Enviar" />
+                            <div id="contact-message"></div>
+                            <input
+                                type="submit"
+                                class="button fill"
+                                value="Enviar"
+                            />
                         </form>
                     </article>
                 </div>
@@ -388,35 +427,38 @@
         </main>
         <footer>
             <div class="container">
-                <ul>
-                    <li>
-                        <a> Política de Privacidade </a>
-                    </li>
-                    <li>
-                        <a> Termos de Serviço </a>
-                    </li>
-                    <li>
-                        <a> Política de Cookies </a>
-                    </li>
-                    <li>
-                        <a> Copyright </a>
-                    </li>
-                </ul>
-                <div>
-                    <span
-                        >Feito com
-                        <img
-                            src="./assets/icons/png/heart.png"
-                            alt="Ícone de coração"
-                    /></span>
-                    <span>
-                        Ícones de
-                        <a href="https://www.freepik.com">Freepik</a>
-                        em
-                        <a href="https://www.flaticon.com/">flaticon.com</a>
-                    </span>
-                    <span>&copy; 2022 Paulo Vitor dos Santos</span>
-                </div>
+                <p>
+                    Feito com
+                    <img
+                        src="./assets/icons/png/heart.png"
+                        alt="Ícone de coração"
+                        id="heart-icon"
+                    />
+                </p>
+                <details id="attributions">
+                    <summary>Fontes das imagens</summary>
+                    <ul>
+                        <li>
+                            Ícones de
+                            <a class="link" href="https://www.freepik.com">
+                                Freepik
+                            </a>
+                            em
+                            <a class="link" href="https://www.flaticon.com/">
+                                flaticon.com
+                            </a>
+                        </li>
+                        <li>
+                            Imagens de
+                            <a class="link" href=""> ___ </a>
+                            em
+                            <a class="link" href="https://www.iconscout.com/">
+                                iconscout.com
+                            </a>
+                        </li>
+                    </ul>
+                </details>
+                <p>&copy; 2022 Paulo Vitor dos Santos</p>
             </div>
         </footer>
     </body>
