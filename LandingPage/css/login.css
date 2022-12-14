@@ -20,6 +20,7 @@
     font-size: 62.5%;
 }
 
+/* Estilos no padrão "mobile-first" */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -192,6 +193,7 @@ footer {
     text-decoration: underline;
 }
 
+/* Media query para tablet */
 @media (min-width: 768px) {
     body {
         width: max-content;
@@ -201,6 +203,7 @@ footer {
     }
 }
 
+/* Media query para dispositivos com ferramenta de clique preciso (ex: mouse) */
 @media (pointer: fine) {
     #show-password-icon:hover,
     #show-password-icon:active,

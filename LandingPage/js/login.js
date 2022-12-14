@@ -18,14 +18,14 @@ const collapsibleInput = document.querySelector(".collapse input");
 const footerText = document.querySelector("footer p");
 const switchFormButton = document.querySelector("#switch-form-button");
 
-/*  */
+/* Uso do localStorage para definir tipo de formulário (login ou cadastro) */
 if (localStorage.getItem("isNewUser") === "true") {
     switchFormBetweenLoginAndSignup({ target: switchFormButton });
 
     localStorage.clear();
 }
 
-/*  */
+/* Selecionar entre formulário de login e de cadastro */
 switchFormButton.addEventListener("click", switchFormBetweenLoginAndSignup);
 
 function switchFormBetweenLoginAndSignup(event) {
@@ -51,7 +51,7 @@ function changeTextsToMatchForm(switchFormButton) {
             : "Novo por aqui?";
 }
 
-/*  */
+/* Validação do formulário de login/cadastro */
 form.addEventListener("submit", validateFormAndLogUserIn);
 
 function validateFormAndLogUserIn(event) {
@@ -101,6 +101,7 @@ function validateEmail() {
     }
 }
 
+// Uso do localStorage para simular usuário logado
 function logUserIn() {
     const username = usernameInput.value;
 
@@ -117,7 +118,7 @@ function showAlertMessage(message) {
     alertMessage.innerText = message;
 }
 
-/*  */
+/* Funcionalidade para mostrar ou ocultar senha no formulário */
 showPasswordIcon.addEventListener("click", showOrHidePassword);
 showPasswordIcon.addEventListener("keypress", showOrHidePassword);
 

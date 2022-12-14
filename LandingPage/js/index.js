@@ -1,23 +1,23 @@
 /* Page body */
 const body = document.body;
 
-/* Header */
+/* Cabeçalho */
 const header = document.querySelector("header");
 const navButton = document.querySelector("#nav-button");
 const sectionLinks = document.querySelectorAll(".section-link");
 const loginLinks = document.querySelectorAll(".login-link");
 
-/* Main sections */
+/* Seções do conteúdo principal da página */
 const sections = document.querySelectorAll("section");
 
-/* CEP and Google Maps section */
+/* Seçao de busca de CEP e Google Maps */
 const cepForm = document.querySelector("#cep-form");
 const cepInput = document.querySelector("#cep");
 const cepSearchButton = document.querySelector("#cep-search-button");
 const cepAlert = document.querySelector("#cep-alert");
 const mapsIframe = document.querySelector("#maps-iframe");
 
-/* Contact section */
+/* Seção de contato */
 const contactForm = document.querySelector("#contact-form");
 const contactFormInputs = document.querySelectorAll(
     "#contact-form .form-input"
@@ -28,17 +28,18 @@ const phoneInput = document.querySelector("#phone");
 const messageInput = document.querySelector("#message");
 const contactMessage = document.querySelector("#contact-message");
 
-/*  */
+/* Uso do localStorage para simular usuário logado */
 const username = localStorage.getItem("username");
 
 if (username) {
+    // Altera texto nos links de login/cadastro
     loginLinks[0].innerText = username;
     loginLinks[1].innerText = "Sair";
 
     localStorage.clear();
 }
 
-/*  */
+/* Manipulação do DOM pela rolagem vertical (scrollY) */
 handleScrollY();
 
 window.addEventListener("scroll", handleScrollY);
@@ -69,7 +70,7 @@ function highlightCurrentSection() {
     }
 }
 
-/*  */
+/* Funcionamento da barra de navegação na página */
 navButton.addEventListener("click", openOrCloseNavigationMenuOnMobile);
 
 sectionLinks.forEach((sectionLink) => {
@@ -88,7 +89,7 @@ function openOrCloseNavigationMenuOnMobile() {
     }
 }
 
-/*  */
+/* Funcionameto dos botões de login ou cadastro */
 loginLinks.forEach((loginLink) => {
     loginLink.addEventListener("click", LogUserOutOrRedirectToLoginPage);
 });
@@ -97,6 +98,7 @@ function LogUserOutOrRedirectToLoginPage(event) {
     username ? logUserOut(event) : redirectToLoginPage(event);
 }
 
+// Função caso haja um usuário "logado"
 function logUserOut(event) {
     event.preventDefault();
 
@@ -105,6 +107,7 @@ function logUserOut(event) {
     window.location.reload();
 }
 
+// Função para redirecionar para página de login ou cadastro de acordo com o botão clicado
 function redirectToLoginPage(event) {
     localStorage.setItem(
         "isNewUser",
@@ -112,7 +115,7 @@ function redirectToLoginPage(event) {
     );
 }
 
-/*  */
+/* Funcionamento da busca pelo CEP + iframe do Google Maps */
 cepForm.addEventListener("submit", searchCEPAndUpdateMapsIframe);
 
 async function searchCEPAndUpdateMapsIframe(event) {
@@ -150,6 +153,7 @@ function checkIfCEPInputIsValid() {
 async function searchCEP() {
     const cep = cepInput.value;
 
+    // Uso de Promise + try/catch
     try {
         const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         const data = await response.json();
@@ -196,7 +200,7 @@ function enableCEPSearchButton() {
     cepSearchButton.value = "Buscar";
 }
 
-/*  */
+/* Máscara de campo para o CEP -> 00000-000 */
 cepInput.addEventListener("input", maskCEPInput);
 
 function maskCEPInput() {
@@ -206,7 +210,7 @@ function maskCEPInput() {
     cepInput.value = cepInput.value.replace(/^(\d{5})(\d)/, "$1-$2");
 }
 
-/*  */
+/* Validação do formulário de contato */
 contactForm.addEventListener("submit", validateFormAndSendMessage);
 
 function validateFormAndSendMessage(event) {
@@ -283,7 +287,7 @@ function showContactAlertMessage(message) {
     contactMessage.innerText = message;
 }
 
-/*  */
+/* Máscara de campo para o telefone -> (00) 00000-0000 */
 phoneInput.addEventListener("input", maskPhoneInput);
 
 function maskPhoneInput() {
