@@ -540,7 +540,7 @@ footer img {
     }
 
     #main-logo img {
-        max-width: 30%;
+        max-width: 70%;
     }
 
     #shopping-table th,
@@ -566,6 +566,10 @@ footer img {
     /* Conteúdo principal da página */
     .article-image img {
         max-width: 63%;
+    }
+
+    #main-logo img {
+        max-width: 30%;
     }
 
     #shopping-table .show-lg {
