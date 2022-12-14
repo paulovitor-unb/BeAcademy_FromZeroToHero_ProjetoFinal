@@ -2,7 +2,6 @@
     --color-darker: rgb(15, 13, 23);
     --color-dark: rgb(25, 22, 34);
     --color-darkish: rgb(49, 47, 60);
-
     --color-lighter: rgb(240, 242, 232);
 
     --color-primary: hsl(181, 60%, 51%);
@@ -37,6 +36,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    outline: none;
     line-height: 1.5;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.6rem;
@@ -48,7 +48,7 @@
 }
 
 body {
-    background: var(--background-gradient);
+    background: var(--color-darker);
 }
 body.nav-bar-open {
     overflow: hidden;
@@ -59,6 +59,7 @@ header {
     height: var(--header-height);
     position: sticky;
     top: 0;
+    z-index: 1;
     border-bottom: 1px solid transparent;
     transition: var(--transition-time);
 }
@@ -109,7 +110,8 @@ header.nav-bar-open {
     background: var(--color-lighter);
     transition: var(--transition-time);
 }
-#nav-button:hover span {
+#nav-button:hover span,
+#nav-button:focus-visible span {
     background: var(--color-primary);
     transform-origin: center center;
 }
@@ -141,7 +143,7 @@ header.nav-bar-open nav {
 }
 
 #nav-bar {
-    height: 100%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -160,7 +162,9 @@ header.nav-bar-open nav {
 }
 
 .section-link:hover,
-.section-link:active {
+.section-link:active,
+.section-link:focus-visible,
+.section-link.highlight {
     color: var(--color-primary);
 }
 
@@ -168,6 +172,7 @@ header.nav-bar-open nav {
     padding: 0.6rem 1.2rem;
     display: block;
     border-radius: 3rem;
+    cursor: pointer;
     transition: var(--transition-time);
 }
 .button:active {
@@ -180,7 +185,8 @@ header.nav-bar-open nav {
     color: var(--color-lighter);
 }
 .button.outline:hover,
-.button.outline:active {
+.button.outline:active,
+.button.outline:focus-visible {
     border: 1px solid var(--color-primary);
     color: var(--color-primary);
 }
@@ -192,7 +198,8 @@ header.nav-bar-open nav {
     color: var(--color-dark);
 }
 .button.fill:hover,
-.button.fill:active {
+.button.fill:active,
+.button.fill:focus-visible {
     background: var(--color-success);
     border: 1px solid var(--color-success);
 }
@@ -200,6 +207,10 @@ header.nav-bar-open nav {
 section {
     display: flex;
     justify-content: center;
+}
+
+main section:nth-child(even) {
+    background-color: var(--color-dark);
 }
 
 section .container {
@@ -300,14 +311,13 @@ section article {
     border: 1px solid var(--color-lighter);
     border-radius: 0.6rem;
 }
-.form-input:focus {
+.form-input:focus-visible {
     outline: var(--color-primary) solid 2px;
     border: 1px solid var(--color-primary);
 }
 
 #cep-alert {
     height: 0;
-    z-index: -1;
     background: var(--color-alert);
     border: 1px solid transparent;
     border-radius: 0.6rem;
@@ -338,6 +348,9 @@ section article {
 
 #contact-links img {
     height: 3rem;
+}
+#contact-links a:focus-visible {
+    border-bottom: 3px solid var(--color-primary);
 }
 
 #contact-form {
@@ -394,6 +407,25 @@ footer img {
     height: 1.6rem;
 }
 
+#attributions {
+    text-align: center;
+}
+
+#attributions summary {
+    cursor: pointer;
+    transition: var(--transition-time);
+}
+#attributions summary:hover,
+#attributions summary:active,
+#attributions summary:focus-visible {
+    text-decoration: underline;
+    color: var(--color-primary);
+}
+
+#attributions summary::marker {
+    color: var(--color-primary);
+}
+
 #attributions ul {
     display: flex;
     flex-direction: column;
@@ -407,7 +439,8 @@ footer img {
     transition: var(--transition-time);
 }
 #attributions a:hover,
-#attributions a:active {
+#attributions a:active,
+#attributions a:focus-visible {
     text-decoration: underline;
 }
 
@@ -417,6 +450,9 @@ footer img {
         scroll-behavior: smooth;
     }
 
+    body {
+        background: var(--background-gradient);
+    }
     body.nav-bar-open {
         overflow: auto;
     }
@@ -457,6 +493,7 @@ footer img {
     #nav-bar {
         margin-left: 2.4rem;
         flex-direction: row;
+        align-items: center;
         gap: 1.2rem;
     }
 
@@ -466,7 +503,8 @@ footer img {
     }
 
     .section-link:hover,
-    .section-link:active {
+    .section-link:active,
+    .section-link:focus-visible {
         text-decoration: underline;
     }
 
@@ -474,8 +512,8 @@ footer img {
         margin-left: auto;
     }
 
-    .login-link {
-        display: inline;
+    main section:not(:first-child) {
+        background: var(--background-gradient);
     }
 
     section article {
@@ -490,9 +528,12 @@ footer img {
         grid-template-columns: 1fr 2fr;
     }
 
-    .article-image img,
+    .article-image img {
+        max-width: 63%;
+    }
+
     #main-logo img {
-        max-width: 100%;
+        max-width: 30%;
     }
 
     #shopping-table th,

@@ -1,4 +1,4 @@
-/* Body */
+/* Page body */
 const body = document.body;
 
 /* Header */
@@ -7,15 +7,21 @@ const navButton = document.querySelector("#nav-button");
 const sectionLinks = document.querySelectorAll(".section-link");
 const loginLinks = document.querySelectorAll(".login-link");
 
-/* CEP and Google Maps */
+/* Main sections */
+const sections = document.querySelectorAll("section");
+
+/* CEP and Google Maps section */
 const cepForm = document.querySelector("#cep-form");
 const cepInput = document.querySelector("#cep");
 const cepSearchButton = document.querySelector("#cep-search-button");
 const cepAlert = document.querySelector("#cep-alert");
 const mapsIframe = document.querySelector("#maps-iframe");
 
-/* Contact */
+/* Contact section */
 const contactForm = document.querySelector("#contact-form");
+const contactFormInputs = document.querySelectorAll(
+    "#contact-form .form-input"
+);
 const nameInput = document.querySelector("#name");
 const emailInput = document.querySelector("#email");
 const phoneInput = document.querySelector("#phone");
@@ -25,7 +31,6 @@ const contactMessage = document.querySelector("#contact-message");
 /*  */
 const username = localStorage.getItem("username");
 
-/*  */
 if (username) {
     loginLinks[0].innerText = username;
     loginLinks[1].innerText = "Sair";
@@ -34,14 +39,34 @@ if (username) {
 }
 
 /*  */
-changeHeaderStyleOnScrollY();
+handleScrollY();
 
-window.addEventListener("scroll", changeHeaderStyleOnScrollY);
+window.addEventListener("scroll", handleScrollY);
+
+function handleScrollY() {
+    changeHeaderStyleOnScrollY();
+    highlightCurrentSection();
+}
 
 function changeHeaderStyleOnScrollY() {
     scrollY
         ? header.classList.add("scroll")
         : header.classList.remove("scroll");
+}
+
+function highlightCurrentSection() {
+    const targetLine = scrollY + innerHeight / 2;
+
+    for (let i = 0; i < sections.length; i++) {
+        const sectionTop = sections[i].offsetTop;
+        const sectionBottom = sectionTop + sections[i].offsetHeight;
+
+        if (sectionTop <= targetLine && sectionBottom > targetLine) {
+            sectionLinks[i].classList.add("highlight");
+        } else {
+            sectionLinks[i].classList.remove("highlight");
+        }
+    }
 }
 
 /*  */
@@ -94,6 +119,7 @@ async function searchCEPAndUpdateMapsIframe(event) {
         const newMapsIframeSrc = getNewMapsIframeSrc(data);
         setNewMapsIframeSrc(newMapsIframeSrc);
         removeCEPAlertMessage();
+        clearCEPInput();
     } catch (error) {
         cepInput.focus();
         showCEPAlertMessage(error.message);
@@ -151,6 +177,10 @@ function removeCEPAlertMessage() {
     cepAlert.innerText = "";
 }
 
+function clearCEPInput() {
+    cepInput.value = "";
+}
+
 function showCEPAlertMessage(message) {
     cepAlert.classList.add("alert");
     cepAlert.innerText = message;
@@ -178,6 +208,7 @@ function validateFormAndSendMessage(event) {
     try {
         validateInputs();
         showContactSuccessMessage();
+        clearContactFormInputs();
     } catch (error) {
         showContactAlertMessage(error.message);
     }
@@ -235,6 +266,12 @@ function showContactSuccessMessage() {
         contactMessage.classList.remove("success");
         contactMessage.innerText = "";
     }, 3000);
+}
+
+function clearContactFormInputs() {
+    contactFormInputs.forEach((contactFormInput) => {
+        contactFormInput.value = "";
+    });
 }
 
 function showContactAlertMessage(message) {

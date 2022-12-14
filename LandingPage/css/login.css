@@ -4,14 +4,19 @@
     --color-darkish: rgb(49, 47, 60);
     --color-lighter: rgb(240, 242, 232);
 
-    --hue-primary: 181;
-    --color-primary: hsl(var(--hue-primary), 60%, 51%);
-    --color-primary-hover: hsl(var(--hue-primary), 100%, 35%);
+    --color-primary: hsl(181, 60%, 51%);
+    --color-success: hsl(153, 90%, 56%);
     --color-alert: hsl(350, 79%, 58%);
+
+    --background-gradient: linear-gradient(
+        135deg,
+        var(--color-darker),
+        var(--color-darkish),
+        var(--color-dark)
+    );
 
     --transition-time: 0.3s linear;
 
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 62.5%;
 }
 
@@ -21,6 +26,7 @@
     padding: 0;
     outline: none;
     line-height: 1.5;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 1.6rem;
     color: var(--color-lighter);
 }
@@ -29,32 +35,39 @@
     color: var(--color-darker);
 }
 
-body {
-    padding: 3.2rem;
+body,
+main,
+#brand {
     display: flex;
     justify-content: center;
+}
+
+body {
+    padding: 3.2rem;
     background: var(--color-darker);
 }
 
 main,
 #brand {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 1.6rem;
 }
 
 #brand * {
     text-align: center;
     line-height: 1;
-    font-size: 3rem;
 }
 
-#brand img {
+#brand-icon img {
     height: 7rem;
 }
 
-#brand span {
+#brand-name {
+    font-size: 3.2rem;
+}
+
+#brand-name span {
+    font-size: inherit;
     color: var(--color-primary);
 }
 
@@ -69,26 +82,26 @@ form {
 
 #alert-block {
     height: 0;
-}
-
-#alert-block.show {
-    margin-bottom: 1.6rem;
-    padding: 0.6rem 1.2rem;
-    height: fit-content;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.4rem;
     background: var(--color-alert);
+    border: 1px solid transparent;
     border-radius: 0.6rem;
+    transform: scaleY(0);
+    transform-origin: center top;
+    transition: var(--transition-time);
 }
-
-#alert-block > * {
-    color: var(--color-darker);
-}
-
-form input {
+#alert-block.alert {
+    margin-bottom: 1.6rem;
     padding: 0.6rem 1.2rem;
-    border-radius: 0.6rem;
+    height: 100%;
+    transform: scaleY(1);
+}
+
+#alert-block * {
+    font-weight: bold;
+    color: var(--color-darker);
 }
 
 .form-group {
@@ -97,19 +110,19 @@ form input {
     flex-direction: column;
 }
 
-.form-group > input {
+.form-input {
+    padding: 0.6rem 1.2rem;
     background: var(--color-darker);
     border: 1px solid var(--color-lighter);
-    color: var(--color-lighter);
+    border-radius: 0.6rem;
 }
-.form-group > input:focus {
+.form-input:focus-visible {
     outline: var(--color-primary) solid 2px;
     border: 1px solid var(--color-primary);
 }
 
 .collapse {
-    margin: 0;
-    padding: 0;
+    margin-bottom: 0;
     height: 0;
     transform: scaleY(0);
     transform-origin: center top;
@@ -117,35 +130,44 @@ form input {
     visibility: hidden;
     transition: var(--transition-time);
 }
-
 .collapse.show {
     margin-bottom: 1.6rem;
-    height: max-content;
+    height: fit-content;
     transform: scaleY(1);
     opacity: 1;
     visibility: visible;
 }
 
-form .form-group:last-of-type {
+#show-password {
     flex-direction: row;
     align-items: center;
     gap: 0.8rem;
+    cursor: pointer;
 }
 
-form > input[type="submit"] {
-    background: var(--color-primary);
-    border: none;
-    font-weight: bold;
-    color: var(--color-dark);
+.button {
+    padding: 0.6rem 1.2rem;
+    display: block;
+    border-radius: 3rem;
+    cursor: pointer;
     transition: var(--transition-time);
 }
-form > input[type="submit"]:hover,
-form > input[type="submit"]:focus-visible {
-    background: var(--color-primary-hover);
-    color: var(--color-lighter);
+.button:active {
+    transform: scale(0.9);
+    transform-origin: center center;
 }
-form > input[type="submit"]:active {
-    transform: scale(0.97);
+
+.button.fill {
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    font-weight: bold;
+    color: var(--color-dark);
+}
+.button.fill:hover,
+.button.fill:active,
+.button.fill:focus-visible {
+    background: var(--color-success);
+    border: 1px solid var(--color-success);
 }
 
 footer {
@@ -158,14 +180,15 @@ footer {
     border-radius: 0.6rem;
 }
 
-footer > button {
+#switch-form-button {
     background: transparent;
     border: none;
     color: var(--color-primary);
     cursor: pointer;
 }
-footer > button:hover,
-footer > button:focus-visible {
+#switch-form-button:hover,
+#switch-form-button:active,
+#switch-form-button:focus-visible {
     text-decoration: underline;
 }
 
@@ -180,8 +203,8 @@ footer > button:focus-visible {
 
 @media (pointer: fine) {
     #show-password-icon:hover,
+    #show-password-icon:active,
     #show-password-icon:focus-visible {
         color: var(--color-primary);
-        cursor: pointer;
     }
 }

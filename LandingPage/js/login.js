@@ -1,24 +1,58 @@
-if (localStorage.getItem("isNewUser") === "true") loadSignupForm();
+/* Elementos do DOM */
+const form = document.querySelector("form");
 
-function loadSignupForm() {
-    const switchFormButton = document.querySelector("#switch-form-button");
+const alertBlock = document.querySelector("#alert-block");
+const alertMessage = document.querySelector("#alert-message");
 
+const usernameInput = document.querySelector("#username");
+const emailInput = document.querySelector("#email");
+const passwordInput = document.querySelector("#password");
+
+const showPasswordIcon = document.querySelector("#show-password-icon");
+
+const submitFormButton = document.querySelector("input[type='submit']");
+
+const collapsibleBlock = document.querySelector(".collapse");
+const collapsibleInput = document.querySelector(".collapse input");
+
+const footerText = document.querySelector("footer p");
+const switchFormButton = document.querySelector("#switch-form-button");
+
+/*  */
+if (localStorage.getItem("isNewUser") === "true") {
     switchFormBetweenLoginAndSignup({ target: switchFormButton });
+
+    localStorage.clear();
 }
 
-setupEventListeners();
+/*  */
+switchFormButton.addEventListener("click", switchFormBetweenLoginAndSignup);
 
-function setupEventListeners() {
-    const form = document.querySelector("form");
-    form.addEventListener("submit", validateFormAndLogUserIn);
-
-    const showPasswordIcon = document.querySelector("#show-password-icon");
-    showPasswordIcon.addEventListener("click", showOrHidePassword);
-    showPasswordIcon.addEventListener("keypress", showOrHidePassword);
-
-    const switchFormButton = document.querySelector("#switch-form-button");
-    switchFormButton.addEventListener("click", switchFormBetweenLoginAndSignup);
+function switchFormBetweenLoginAndSignup(event) {
+    showOrHideCollapsibleInput();
+    changeTextsToMatchForm(event.target);
 }
+
+function showOrHideCollapsibleInput() {
+    collapsibleBlock.classList.toggle("show");
+    collapsibleInput.required = !collapsibleInput.required;
+    collapsibleInput.value = "";
+}
+
+function changeTextsToMatchForm(switchFormButton) {
+    [submitFormButton.value, switchFormButton.innerText] = [
+        switchFormButton.innerText,
+        submitFormButton.value,
+    ];
+
+    footerText.innerText =
+        footerText.innerText === "Novo por aqui?"
+            ? "Já possui uma conta?"
+            : "Novo por aqui?";
+}
+
+/*  */
+form.addEventListener("submit", validateFormAndLogUserIn);
 
 function validateFormAndLogUserIn(event) {
     event.preventDefault();
@@ -39,7 +73,7 @@ function validateInputs() {
 }
 
 function validateUsername() {
-    const username = document.querySelector("#username").value;
+    const username = usernameInput.value;
 
     if (!username) {
         throw Error("O nome de usuário não pode ser vazio!");
@@ -47,7 +81,7 @@ function validateUsername() {
 }
 
 function validatePassword() {
-    const passwordLength = document.querySelector("#password").value.length;
+    const passwordLength = passwordInput.value.length;
     const minLength = 8;
     const maxLength = 16;
 
@@ -59,16 +93,16 @@ function validatePassword() {
 }
 
 function validateEmail() {
-    const emailInput = document.querySelector("#email");
+    const email = document.querySelector("#email").value;
     const emailPattern = /[^ ]@[^ ]+\.[a-z]{2,3}$/i;
 
-    if (emailInput.required && !emailPattern.test(emailInput.value)) {
+    if (emailInput.required && !emailPattern.test(email)) {
         throw Error("Email inválido!");
     }
 }
 
 function logUserIn() {
-    const username = document.querySelector("#username").value;
+    const username = usernameInput.value;
 
     localStorage.clear();
     localStorage.setItem("username", username);
@@ -79,12 +113,13 @@ function redirectToIndexPage() {
 }
 
 function showAlertMessage(message) {
-    const alertBlock = document.querySelector("#alert-block");
-    const alertMessage = document.querySelector("#alert-message");
-
-    alertBlock.classList.add("show");
+    alertBlock.classList.add("alert");
     alertMessage.innerText = message;
 }
+
+/*  */
+showPasswordIcon.addEventListener("click", showOrHidePassword);
+showPasswordIcon.addEventListener("keypress", showOrHidePassword);
 
 function showOrHidePassword(event) {
     if (event.type === "click" || event.key === "Enter") {
@@ -99,37 +134,6 @@ function changeShowPasswordIcon(showPasswordIcon) {
 }
 
 function changePasswordInputType() {
-    const passwordInput = document.querySelector("#password");
-
     passwordInput.type =
         passwordInput.type === "password" ? "text" : "password";
-}
-
-function switchFormBetweenLoginAndSignup(event) {
-    showOrHideCollapsibleInput();
-    changeTextsToMatchForm(event.target);
-}
-
-function showOrHideCollapsibleInput() {
-    const collapsibleInput = document.querySelector(".collapse > input");
-
-    collapsibleInput.parentElement.classList.toggle("show");
-    collapsibleInput.required = !collapsibleInput.required;
-    collapsibleInput.value = "";
-}
-
-function changeTextsToMatchForm(switchFormButton) {
-    const submitFormButton = document.querySelector(
-        "form > input[type='submit']"
-    );
-    [submitFormButton.value, switchFormButton.innerText] = [
-        switchFormButton.innerText,
-        submitFormButton.value,
-    ];
-
-    const footerText = document.querySelector("footer > p");
-    footerText.innerText =
-        footerText.innerText === "Novo por aqui?"
-            ? "Já possui uma conta?"
-            : "Novo por aqui?";
 }
