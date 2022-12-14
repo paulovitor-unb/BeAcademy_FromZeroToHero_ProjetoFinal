@@ -536,7 +536,7 @@ footer img {
     }
 
     .article-image img {
-        max-width: 63%;
+        max-width: 100%;
     }
 
     #main-logo img {
@@ -564,6 +564,10 @@ footer img {
 /* Media query para computador */
 @media (min-width: 1024px) {
     /* Conteúdo principal da página */
+    .article-image img {
+        max-width: 63%;
+    }
+
     #shopping-table .show-lg {
         display: table-cell;
     }
