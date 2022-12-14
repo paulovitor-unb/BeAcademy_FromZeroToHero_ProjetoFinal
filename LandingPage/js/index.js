@@ -77,9 +77,15 @@ sectionLinks.forEach((sectionLink) => {
 });
 
 function openOrCloseNavigationMenuOnMobile() {
-    body.classList.toggle("nav-bar-open");
-    header.classList.toggle("nav-bar-open");
-    navButton.classList.toggle("active");
+    if (window.innerWidth < 768) {
+        body.classList.toggle("nav-bar-open");
+        header.classList.toggle("nav-bar-open");
+        navButton.classList.toggle("active");
+    } else {
+        body.classList.remove("nav-bar-open");
+        header.classList.remove("nav-bar-open");
+        navButton.classList.remove("active");
+    }
 }
 
 /*  */
@@ -121,7 +127,6 @@ async function searchCEPAndUpdateMapsIframe(event) {
         removeCEPAlertMessage();
         clearCEPInput();
     } catch (error) {
-        cepInput.focus();
         showCEPAlertMessage(error.message);
     } finally {
         enableCEPSearchButton();
@@ -196,6 +201,8 @@ cepInput.addEventListener("input", maskCEPInput);
 
 function maskCEPInput() {
     cepInput.value = cepInput.value.replace(/[^0-9]/g, "");
+
+    cepInput.value = cepInput.value.replace(/^(\d{5})(\d{3})(\d+)/, "$1-$2");
     cepInput.value = cepInput.value.replace(/^(\d{5})(\d)/, "$1-$2");
 }
 
@@ -224,7 +231,6 @@ function validateInputs() {
 function validateName() {
     const name = nameInput.value;
     if (!name) {
-        nameInput.focus();
         throw Error("Nome não pode ser vazio!");
     }
 }
@@ -233,7 +239,6 @@ function validateEmail() {
     const email = emailInput.value;
     const emailPattern = /[^ ]@[^ ]+\.[a-z]{2,3}$/i;
     if (!emailPattern.test(email)) {
-        emailInput.focus();
         throw Error("Email inválido!");
     }
 }
@@ -242,7 +247,6 @@ function validatePhone() {
     const phone = phoneInput.value;
     const phonePattern = /^\(\d{2}\) \d{5}-\d{4}$/;
     if (!phonePattern.test(phone)) {
-        phoneInput.focus();
         throw Error("Telefone inválido!");
     }
 }
@@ -250,7 +254,6 @@ function validatePhone() {
 function validateMessage() {
     const message = messageInput.value;
     if (!message) {
-        messageInput.focus();
         throw Error("Mensagem não pode ser vazia!");
     }
 }
@@ -286,6 +289,10 @@ phoneInput.addEventListener("input", maskPhoneInput);
 function maskPhoneInput() {
     phoneInput.value = phoneInput.value.replace(/[^0-9]/g, "");
 
+    phoneInput.value = phoneInput.value.replace(
+        /^(\d{2})(\d{5})(\d{4})(\d+)/,
+        "($1) $2-$3"
+    );
     phoneInput.value = phoneInput.value.replace(
         /^(\d{2})(\d{5})(\d)/,
         "($1) $2-$3"
